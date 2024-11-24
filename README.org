@@ -1,0 +1,58 @@
+Voice transcription for Emacs using OpenAI's Whisper API.
+
+** Requirements
+
+- Emacs 27.1 or later
+- ffmpeg
+- PulseAudio (currently only supports Linux systems with PulseAudio)
+- OpenAI API key
+
+** Installation
+
+*** MELPA
+Coming soon.
+
+*** Manual
+Clone this repository and add to your =load-path=:
+
+#+begin_src elisp
+(add-to-list 'load-path "/path/to/ok-whisper")
+(require 'ok-whisper)
+#+end_src
+
+** Configuration
+
+Set your OpenAI API key:
+#+begin_src elisp
+(setq ok-whisper--openai-token "your-api-key")
+#+end_src
+
+** Usage
+
+- =M-x ok-whisper--record-dwim= :: Start/stop recording (press once to start, again to stop)
+- =M-x ok-whisper--transcribe-file= :: Transcribe an existing audio file
+
+The transcription result will be inserted at point.
+
+Define a shortcut:
+
+#+begin_src elisp
+(define-key global-map (kbd "C-x R") 'ok-whisper--record-dwim)
+#+end_src
+
+
+** Limitations
+
+- Currently only works on Linux systems with PulseAudio
+- Maximum recording length is 180 seconds by default (but can be
+  configured with =ok-whisper--max-recording-seconds=
+- Requires an active internet connection
+- Uses OpenAI's API (costs apply)
+
+** License
+
+AGPL-3.0. See [[file:LICENSE][LICENSE]].
+
+** Credits
+
+Inspired by [[https://simonsafar.com/2024/whisper/][Simon Safar's blog post]].

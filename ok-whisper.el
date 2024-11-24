@@ -67,7 +67,7 @@ Interrupts the ffmpeg process and prepares for transcription."
   (interrupt-process ok-whisper--ffmpeg-process)
   (message "Stopped recording"))
 
-(defun ok-whisper--recording-sentinel (proc event)
+(defun ok-whisper--recording-sentinel (proc _event)
   "Monitor the recording process and handle its completion.
 Triggers transcription when recording finishes successfully.
 

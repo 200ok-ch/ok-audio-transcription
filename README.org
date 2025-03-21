@@ -1,11 +1,11 @@
-Voice transcription for Emacs using OpenAI's Whisper API.
+Voice Transcription for Emacs using OpenAI's Realtime API
 
 ** Requirements
 
 - Emacs 27.1 or later
 - ffmpeg
-- PulseAudio (currently only supports Linux systems with PulseAudio)
-- OpenAI API key
+- PulseAudio (currently supports only Linux systems with PulseAudio)
+- OpenAI API Key
 
 ** Installation
 
@@ -13,41 +13,40 @@ Voice transcription for Emacs using OpenAI's Whisper API.
 Coming soon.
 
 *** Manual
-Clone this repository and add to your =load-path=:
+Clone this repository and add its path to `load-path`:
 
-#+begin_src elisp
-(add-to-list 'load-path "/path/to/ok-whisper")
-(require 'ok-whisper)
-#+end_src
+```elisp
+(add-to-list 'load-path "/path/to/ok-audio-transcription")
+(require 'ok-audio-transcription)
+```
 
 ** Configuration
 
-Set your OpenAI API key:
-#+begin_src elisp
-(setq ok-whisper--openai-token "your-api-key")
-#+end_src
+Set your OpenAI API token:
+
+```elisp
+(setq ok-audio-transcription--openai-token "your-api-token")
+```
 
 ** Usage
 
-- =M-x ok-whisper--record-dwim= :: Start/stop recording (press once to start, again to stop)
-- =M-x ok-whisper--transcribe-file= :: Transcribe an existing audio file
+- `M-x ok-audio-transcription--record-dwim` :: Start/stop recording (press once to start, again to stop)
+- `M-x ok-audio-transcription--transcribe-file` :: Transcribe an existing audio file
 
 The transcription result will be inserted at point.
 
 Define a shortcut:
 
-#+begin_src elisp
-(define-key global-map (kbd "C-x R") 'ok-whisper--record-dwim)
-#+end_src
-
+```elisp
+(define-key global-map (kbd "C-x R") 'ok-audio-transcription--record-dwim)
+```
 
 ** Limitations
 
-- Currently only works on Linux systems with PulseAudio
-- Maximum recording length is 180 seconds by default (but can be
-  configured with =ok-whisper--max-recording-seconds=
+- Currently supports only Linux systems with PulseAudio
+- Maximum recording length defaults to 180 seconds (modifiable via `ok-audio-transcription--max-recording-seconds`)
 - Requires an active internet connection
-- Uses OpenAI's API (costs apply)
+- Utilizes OpenAI's API (incurs costs)
 
 ** License
 
